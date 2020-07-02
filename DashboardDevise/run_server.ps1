@@ -1,1 +1,1 @@
-C:\Users\WIECKOWS\Documents\data_science\tableau_de_bord\.env\Scripts\python.exe C:\Users\WIECKOWS\Documents\data_science\tableau_de_bord\DashboardDevise\manage.py runserver
+C:\Python_Data_Science\python\tableau_de_bord\.env\Scripts\python.exe C:\Python_Data_Science\python\tableau_de_bord\DashboardDevise\manage.py runserver

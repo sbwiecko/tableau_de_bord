@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+
 </head>
-<body>
-    {% for nombre in liste_nombres %}
-    <h2>Bonjour les {{nombre}} petits loups!</h2>
-    {% endfor %}
+
+<body class="p-3 mb-2 bg-light text-black">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-6">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor voluptate labore cum ea, doloribus eos quod cumque iure omnis ex dignissimos molestias fugit laborum ratione laudantium aliquam tempore sit consequatur.</p>
+
+                <canvas id="chart"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var ctx = document.getElementById("chart");
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{days|safe}},
+                datasets: [{
+                    label: "CHF",
+                    data: {{rates|safe}},
+                    fill: true,
+                    borderColor: 'rgb(255,128,128)'
+                }]
+            }
+        })
+    </script>
+
 </body>
 </html>
