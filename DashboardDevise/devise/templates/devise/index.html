@@ -14,29 +14,30 @@
 <body class="p-3 mb-2 bg-light text-black">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-6">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor voluptate labore cum ea, doloribus eos quod cumque iure omnis ex dignissimos molestias fugit laborum ratione laudantium aliquam tempore sit consequatur.</p>
-
-                <canvas id="chart"></canvas>
-
-            </div>
+            {% for currency,rates in data.items %}
+                <div class="col-md-10 col-lg-6">
+                <canvas id="chart-{{currency}}"></canvas>
+                </div>
+            {% endfor %}
         </div>
     </div>
 
     <script>
-        var ctx = document.getElementById("chart");
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: {{days|safe}},
-                datasets: [{
-                    label: "CHF",
-                    data: {{rates|safe}},
-                    fill: true,
-                    borderColor: 'rgb(255,128,128)'
-                }]
-            }
-        })
+        {% for currency,rates in data.items %}
+            var ctx = document.getElementById("chart-{{currency}}");
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {{days|safe}},
+                    datasets: [{
+                        label: "{currency}",
+                        data: {{rates|safe}},
+                        fill: true,
+                        borderColor: 'rgb(255,128,128)'
+                    }]
+                }
+            })
+        {% endfor %}
     </script>
 
 </body>
