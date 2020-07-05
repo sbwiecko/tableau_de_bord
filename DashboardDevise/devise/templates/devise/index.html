@@ -6,7 +6,6 @@
     <title>index</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
 </head>
@@ -14,24 +13,24 @@
 <body class="p-3 mb-2 bg-light text-black">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            {% for currency,rates in data.items %}
+            {% for currency,rate in rates.items %}
                 <div class="col-md-10 col-lg-6">
-                <canvas id="chart-{{currency}}"></canvas>
+                    <canvas id="chart-{{currency}}"></canvas>
                 </div>
             {% endfor %}
         </div>
     </div>
 
     <script>
-        {% for currency,rates in data.items %}
+        {% for currency,rate in rates.items %}
             var ctx = document.getElementById("chart-{{currency}}");
             new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: {{days|safe}},
                     datasets: [{
-                        label: "{currency}",
-                        data: {{rates|safe}},
+                        label: "{{currency}}",
+                        data: {{rate|safe}},
                         fill: true,
                         borderColor: 'rgb(255,128,128)'
                     }]

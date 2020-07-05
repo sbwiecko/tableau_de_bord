@@ -9,7 +9,7 @@ def get_ratings(currencies, days=30): # list of currencies
     start_date = end_date - timedelta(days=days)
 
     symboles = ','.join(currencies)
-    requete = f"https://api.exchangeratesapi.io/history?start_at={start_date}&end_at={end_date}&base=CHF&symbols={symboles}"
+    requete = f"https://api.exchangeratesapi.io/history?start_at={start_date}&end_at={end_date}&base=EUR&symbols={symboles}"
     r = requests.get(requete)
 
     if not r and not r.json(): # order is important as the 2nd condition is not evaluated if 1st one is False
