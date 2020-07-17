@@ -10,8 +10,20 @@
 
 </head>
 
-<body class="p-3 mb-2 bg-light text-black">
+<body class="p-3 mb-2 bg-dark text-white">
     <div class="container-fluid">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white">Tableau de bord - {{ page_label }}</h1>
+                <!-- Template tags accept parameters, which need to be separated by spaces. Behind the scenes the template tag is deconstructed and the contents are split on every space. -->
+                <a href="{% url 'home' days_range=7 currencies=currencies %}" class="btn {% if page_label == 'semaine' %}btn-info{% else %}btn-secondary{% endif %}">semaine</a>
+                <a href="{% url 'home' days_range=30 currencies=currencies %}" class="btn {% if page_label == 'mois' %}btn-info{% else %}btn-secondary{% endif %}">mois</a>
+                <a href="{% url 'home' days_range=365 currencies=currencies %}" class="btn {% if page_label == 'année' %}btn-info{% else %}btn-secondary{% endif %}">année</a>
+
+            </div>
+        </div>
+
         <div class="row justify-content-center">
             {% for currency,rate in rates.items %}
                 <div class="col-md-10 col-lg-6">
@@ -22,15 +34,17 @@
     </div>
 
     <script>
+        <!-- change default textcolor in all charts -->
+        Chart.defaults.global.defaultFontColor = "#fff";
         {% for currency,rate in rates.items %}
             var ctx = document.getElementById("chart-{{currency}}");
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: {{days|safe}},
+                    labels: {{ days|safe }},
                     datasets: [{
-                        label: "{{currency}}",
-                        data: {{rate|safe}},
+                        label: "{{ currency }}",
+                        data: {{ rate|safe }},
                         fill: true,
                         borderColor: 'rgb(255,128,128)'
                     }]
@@ -38,6 +52,5 @@
             })
         {% endfor %}
     </script>
-
 </body>
 </html>
