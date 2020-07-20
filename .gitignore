@@ -137,3 +137,6 @@ dmypy.json
 
 # run server script
 run_server.ps1
+
+# zip package
+.zip

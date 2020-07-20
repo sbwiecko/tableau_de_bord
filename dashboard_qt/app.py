@@ -21,7 +21,7 @@ class Window(QtWidgets.QWidget):
         self.btn_refresh.setFlat(True)
 
         self.view = QtWebEngineWidgets.QWebEngineView()
-        self.view.load(QtCore.QUrl("http://docstring.pythonanywhere.com"))
+        self.view.load(QtCore.QUrl("http://tryptofan.pythonanywhere.com")) # could use local dev address 127.0.0.1:8000
 
         self.setWindowTitle("Tableau de bord - Devise")
 
@@ -31,7 +31,7 @@ class Window(QtWidgets.QWidget):
 
     def refresh(self):
         days = self.spin.value()
-        self.view.load(QtCore.QUrl(f"http://docstring.pythonanywhere.com/days={days}&currencies=USD,CAD"))
+        self.view.load(QtCore.QUrl(f"http://tryptofan.pythonanywhere.com/days={days}&currencies=USD,CAD"))
 
 
 app = QtWidgets.QApplication([])
