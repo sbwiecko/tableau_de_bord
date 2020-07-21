@@ -21,7 +21,7 @@ class Window(QtWidgets.QWidget):
         self.btn_refresh.setFlat(True)
 
         self.view = QtWebEngineWidgets.QWebEngineView()
-        self.view.load(QtCore.QUrl("http://tryptofan.pythonanywhere.com")) # could use local dev address 127.0.0.1:8000
+        self.view.load(QtCore.QUrl("https://tryptofan.pythonanywhere.com")) # could use local dev address 127.0.0.1:8000
 
         self.setWindowTitle("Tableau de bord - Devise")
 
@@ -36,5 +36,5 @@ class Window(QtWidgets.QWidget):
 
 app = QtWidgets.QApplication([])
 win = Window()
-win.showFullScreen()
+win.show() #win.showFullScreen() for full screen
 app.exec_()
